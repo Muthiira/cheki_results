@@ -10,7 +10,7 @@ function LoginForm({ onLogin }) {
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
-    fetch("/login", {
+    fetch("https://school-performance-api.herokuapp.com/users/sign_in", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

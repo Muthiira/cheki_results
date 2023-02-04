@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Button, Error, Input, FormField, Label, Textarea } from "../styles";
+import React, { useState, useEffect } from "react";
+import { Button, Error, Input, FormField, Label} from "../styles";
 
 function SignUpForm({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -12,7 +12,7 @@ function SignUpForm({ onLogin }) {
     e.preventDefault();
     setErrors([]);
     setIsLoading(true);
-    fetch("", {
+    fetch("https://school-performance-api.herokuapp.com/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -32,7 +32,25 @@ function SignUpForm({ onLogin }) {
     });
   }
 
+  function handleCallbackResponse (response){
+    console.log("Encoded JWT ID token: " + response.credential);
+  }
+
+  useEffect(()=>{
+    /*global google*/
+    google.accounts.id.initialize({
+      client_id: "448746183538-8hba36viefmg9jue1eacebrkktr9bks9.apps.googleusercontent.com",
+      callback: handleCallbackResponse
+    });
+    google.accounts.id.renderButton(
+      document.getElementById("signInDiv"),
+      {theme: "outline", size: "large"}
+    )
+  }, []);
+
   return (
+	<div>
+		<div>
     <form onSubmit={handleSubmit}>
       <FormField>
         <Label htmlFor="username">Username</Label>
@@ -66,13 +84,21 @@ function SignUpForm({ onLogin }) {
       </FormField>
       <FormField>
         <Button type="submit">{isLoading ? "Loading..." : "Sign Up"}</Button>
+		{/* <div id="signInDiv" ></div> */}
       </FormField>
+	
+	  
+
       <FormField>
         {errors.map((err) => (
           <Error key={err}>{err}</Error>
         ))}
       </FormField>
+	 
     </form>
+	</div>
+	<div id="signInDiv"></div>
+	</div>
   );
 }
 

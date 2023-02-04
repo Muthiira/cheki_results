@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import LoginForm from "../components/LoginForm";
 import SignUpForm from "../components/SignUp";
@@ -6,6 +6,22 @@ import { Button } from "../styles";
 
 function Login({ onLogin }) {
   const [showLogin, setShowLogin] = useState(true);
+
+//   function handleCallbackResponse (response){
+//     console.log("Encoded JWT ID token: " + response.credential);
+//   }
+
+//   useEffect(()=>{
+//     /*global google*/
+//     google.accounts.id.initialize({
+//       client_id: "448746183538-8hba36viefmg9jue1eacebrkktr9bks9.apps.googleusercontent.com",
+//       callback: handleCallbackResponse
+//     });
+//     google.accounts.id.renderButton(
+//       document.getElementById("signInDiv"),
+//       {theme: "outline", size: "large"}
+//     )
+//   }, []);
 
   return (
     <Wrapper>

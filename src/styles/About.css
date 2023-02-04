@@ -1,0 +1,16 @@
+.about{
+	display: flex;
+}
+.text{
+	align-items: center;
+	text-align: center;
+	margin-top: auto;
+	margin-bottom: auto;
+	word-break: break-all;
+	
+}
+
+@media (max-width: 500px) {
+	.videos::-webkit-scrollbar {
+	  display: none;
+	}}

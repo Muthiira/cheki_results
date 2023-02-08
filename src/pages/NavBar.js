@@ -4,7 +4,10 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Login from "./Login";
 import Home from "../components/Home";
 import About from "../components/About";
-import "./../styles/Navbar.css"
+import "./../styles/Navbar.css";
+import Footer from "../components/Footer";
+
+
 export default function NavBar() {
 return (
 <>
@@ -33,6 +36,9 @@ return (
 		  <div>
 		  <Button  as={Link} to={"/login"} variant="outline-success">Login</Button>
 		  </div>
+      <div>
+		  <Button  as={Link} to={"/logout"} variant="outline-success">LogOut</Button>
+		  </div>
         </Container>
 </Navbar>
 <Switch>
@@ -44,6 +50,9 @@ return (
         </Route>
 		<Route path="/about">
           <About/>
+        </Route>
+        <Route path="/contacts">
+          <Footer/>
         </Route>
       </Switch>
 </Router>

@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Button, Error, Input, FormField, Label} from "../styles";
 
 function SignUpForm({ onLogin }) {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [errors, setErrors] = useState([]);
+  const [username, setUsername] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   function handleSubmit(e) {
@@ -17,11 +18,14 @@ function SignUpForm({ onLogin }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        username,
-        password,
-        password_confirmation: passwordConfirmation,
-      }),
+      body: JSON.stringify(
+       {
+            username,
+            email,
+            password,
+            password_confirmation:passwordConfirmation
+        }
+    ),
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
@@ -52,7 +56,7 @@ function SignUpForm({ onLogin }) {
 	<div>
 		<div>
     <form onSubmit={handleSubmit}>
-      <FormField>
+    <FormField>
         <Label htmlFor="username">Username</Label>
         <Input
           type="text"
@@ -60,6 +64,16 @@ function SignUpForm({ onLogin }) {
           autoComplete="off"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+        />
+      </FormField>
+      <FormField>
+        <Label htmlFor="email">Email</Label>
+        <Input
+          type="text"
+          id="email"
+          autoComplete="off"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </FormField>
       <FormField>
@@ -84,17 +98,7 @@ function SignUpForm({ onLogin }) {
       </FormField>
       <FormField>
         <Button type="submit">{isLoading ? "Loading..." : "Sign Up"}</Button>
-		{/* <div id="signInDiv" ></div> */}
       </FormField>
-	
-	  
-
-      <FormField>
-        {errors.map((err) => (
-          <Error key={err}>{err}</Error>
-        ))}
-      </FormField>
-	 
     </form>
 	</div>
 	<div id="signInDiv"></div>

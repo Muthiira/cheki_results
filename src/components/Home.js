@@ -4,6 +4,9 @@ import "./../styles/Home.css"
 import About from './About';
 import Footer from './Footer';
 import NavBar from '../pages/NavBar';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Login from '../pages/Login';
+
 
 
 export default function Home() {
@@ -15,9 +18,9 @@ export default function Home() {
 
   return (
 	<div class="home">
-    <div>
+    {/* <div>
       <NavBar />
-    </div>
+    </div> */}
 		<div class='carousel-item active img-fluid'>
     <Carousel activeIndex={index} onSelect={handleSelect}>
       <Carousel.Item>
@@ -61,6 +64,19 @@ export default function Home() {
   <div>
     <Footer />
   </div>
+{/* <Router>
+  <Switch>
+        <Route path="/login">
+            <Login />
+        </Route>
+        <Route path="/home">
+          <Home />
+        </Route>
+		<Route path="/about">
+          <About/>
+        </Route>
+      </Switch>
+</Router> */}
 	
 	</div>
   );
